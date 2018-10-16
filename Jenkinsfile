@@ -6,5 +6,15 @@ pipeline {
                 sh 'bash ./build.sh' 
             }
         }
+        stage('functional-test') { 
+            steps {
+                sh 'bash ./build.sh' 
+            }
+        }
+        stage('deploy') { 
+            steps {
+                sh 'bash ./build.sh' 
+            }
+        }
     }
 }
