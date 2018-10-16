@@ -6,14 +6,9 @@ pipeline {
                 sh 'bash ./build.sh' 
             }
         }
-        stage('functional-test') { 
+        stage('test') { 
             steps {
-                sh 'bash ./build.sh' 
-            }
-        }
-        stage('deploy') { 
-            steps {
-                sh 'bash ./build.sh' 
+                sh 'bash ls -la .' 
             }
         }
     }
