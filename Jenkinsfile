@@ -4,7 +4,7 @@ pipeline {
         stage('build') { 
             steps {
                 sh 'bash ./build.sh' 
-                sh 'bash ls -la .' 
+                sh 'bash -c ls -la .' 
             }
         }
         stage('functional-test') { 
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test') { 
             steps {
-                sh 'bash ls -la .' 
+                sh 'bash -c ls -la .' 
             }
         }
     }
