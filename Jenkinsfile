@@ -12,7 +12,7 @@ pipeline {
                 sh 'bash ./build.sh' 
             }
         }
-        stage('test') { 
+        stage('deploy') { 
             steps {
                 sh 'bash -c ls -la .' 
             }
