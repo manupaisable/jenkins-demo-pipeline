@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('build') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+        stage('test') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+        stage ('trigger_client_pipeline') {
+            steps {
+                build job: 'client', propagate: true, wait: true
+            }
+        }        
+    }
+}
