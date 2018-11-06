@@ -11,10 +11,5 @@ pipeline {
                 sh 'bash -c ls -la .' 
             }
         }
-        stage ('trigger_client_pipeline') {
-            steps {
-                build job: 'client', propagate: true, wait: true
-            }
-        }        
     }
 }
