@@ -1,10 +1,8 @@
 pipeline {
     agent any
-    triggers { 
-        upstream(upstreamProjects: 'orders-backend', 
-                 threshold: hudson.model.Result.SUCCESS),
-        upstream(upstreamProjects: 'payment-backend', 
-                 threshold: hudson.model.Result.SUCCESS)                 
+    triggers {
+        upstream(upstreamProjects: 'orders-backend, payment-backend', 
+                 threshold: hudson.model.Result.SUCCESS)
     }
     stages {
         stage('integration-test') { 
