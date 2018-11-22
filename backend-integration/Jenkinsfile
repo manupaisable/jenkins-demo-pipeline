@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    triggers { 
+        upstream(upstreamProjects: 'orders-backend', 
+                 threshold: hudson.model.Result.SUCCESS),
+        upstream(upstreamProjects: 'payment-backend', 
+                 threshold: hudson.model.Result.SUCCESS)                 
+    }
+    stages {
+        stage('integration-test') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+        stage('security-test') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+        stage('performance-test') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+    }
+}
+
