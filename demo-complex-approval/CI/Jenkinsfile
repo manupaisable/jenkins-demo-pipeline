@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('unit_tests') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+    }
+}

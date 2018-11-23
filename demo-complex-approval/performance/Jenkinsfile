@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    triggers {
+        upstream(upstreamProjects: 'CI', 
+                 threshold: hudson.model.Result.SUCCESS)
+    }
+    stages {
+        stage('performance_tests') { 
+            steps {
+                input message: "Run performance tests?"
+                sh 'bash -c ls -la .' 
+            }
+        }
+    }
+}

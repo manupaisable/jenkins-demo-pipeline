@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    triggers {
+        upstream(upstreamProjects: 'acceptance-QA', 
+                 threshold: hudson.model.Result.SUCCESS)
+    }
+    stages {
+        stage('CAB_start') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+        stage('CAB_approval') { 
+            steps {
+                input message: "CAB approves?"
+                sh 'bash ./build.sh' 
+            }
+        }
+    }
+}

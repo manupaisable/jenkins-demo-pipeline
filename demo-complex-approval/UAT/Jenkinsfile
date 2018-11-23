@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    triggers {
+        upstream(upstreamProjects: 'acceptance-QA', 
+                 threshold: hudson.model.Result.SUCCESS)
+    }
+    stages {
+        stage('user_tests') { 
+            steps {
+                input message: "Run user tests?"
+                sh 'bash -c ls -la .' 
+            }
+        }
+    }
+}

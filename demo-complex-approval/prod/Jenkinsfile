@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    triggers {
+        upstream(upstreamProjects: 'CAB', 
+                 threshold: hudson.model.Result.SUCCESS)
+    }
+    stages {
+        stage('smoke_tests') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+    }
+}
