@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    stages {
+        stage('CI') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }
+		stage('First Parallel Stages') {
+			parallel {
+		        stage('acceptance-QA') { 
+		            steps {
+		                sh 'bash -c ls -la .' 
+		            }
+		        }
+		        stage('performance') { 
+		            steps {
+		                input message: "Run performance?"
+		                sh 'bash -c ls -la .' 
+		            }
+		        }
+		        stage('security') { 
+		            steps {
+		                input message: "Run security?"
+		                sh 'bash -c ls -la .' 
+		            }
+		        }
+	        }
+		}
+		stage('Second Parallel Stages') {
+			parallel {
+		        stage('CAB') { 
+		            steps {
+		                input message: "CAB approves?"
+		                sh 'bash ./build.sh' 
+		            }
+		        }
+		        stage('staging') { 
+		            steps {
+		                input message: "Run staging?"
+		                sh 'bash -c ls -la .' 
+		            }
+		        }
+		        stage('user-acceptance') { 
+		            steps {
+		                input message: "Run user acceptance?"
+		                sh 'bash -c ls -la .' 
+		            }
+		        }
+	        }
+		}
+        stage('production') { 
+            steps {
+                sh 'bash -c ls -la .' 
+            }
+        }		
+    }
+}
