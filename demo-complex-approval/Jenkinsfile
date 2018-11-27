@@ -14,18 +14,26 @@ pipeline {
 		            }
 		        }
 		        stage('performance') { 
-			        try {
-		                input message: "Run performance?"
-		                sh 'bash -c ls -la .' 
-					} catch (e) {
-					}		        
+		            steps {
+		            	script {
+					        try {
+				                input message: "Run performance?"
+				                sh 'bash -c ls -la .' 
+							} catch (e) {
+							}		        
+						}
+		            }
 		        }
 		        stage('security') { 
-			        try {
-		                input message: "Run security?"
-		                sh 'bash -c ls -la .' 
-					} catch (e) {
-					}		        
+		            steps {
+		            	script {
+					        try {
+				                input message: "Run security?"
+				                sh 'bash -c ls -la .' 
+							} catch (e) {
+							}		        
+						}
+					}
 		        }
 	        }
 		}
@@ -38,18 +46,26 @@ pipeline {
 		            }
 		        }
 		        stage('staging') { 
-			        try {
-		                input message: "Run staging?"
-		                sh 'bash -c ls -la .' 
-					} catch (e) {
-					}		        
+		            steps {
+		            	script {
+					        try {
+				                input message: "Run staging?"
+				                sh 'bash -c ls -la .' 
+							} catch (e) {
+							}		        
+						}
+					}
 		        }
 		        stage('user-acceptance') { 
-			        try {
-		                input message: "Run user acceptance?"
-		                sh 'bash -c ls -la .' 
-					} catch (e) {
-					}		        
+		            steps {
+		            	script {
+					        try {
+				                input message: "Run user acceptance?"
+				                sh 'bash -c ls -la .' 
+							} catch (e) {
+							}		        
+						}
+					}
 		        }
 	        }
 		}
