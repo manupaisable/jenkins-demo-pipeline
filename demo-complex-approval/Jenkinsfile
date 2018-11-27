@@ -6,31 +6,34 @@ pipeline {
                 sh 'bash -c ls -la .' 
             }
         }
-		stage('First Parallel Stages') {
+		stage('parallel-stages-1') {
 			parallel {
 		        stage('acceptance-QA') { 
 		            steps {
 		                sh 'bash -c ls -la .' 
 		            }
 		        }
-		        try {
-			        stage('performance') { 
-			            steps {
+		        stage('performance') { 
+		            steps {
+				        try {
 			                input message: "Run performance?"
 			                sh 'bash -c ls -la .' 
-			            }
-			        }
-			        stage('security') { 
-			            steps {
+						} catch (e) {
+						}		        
+		            }
+		        }
+		        stage('security') { 
+		            steps {
+				        try {
 			                input message: "Run security?"
 			                sh 'bash -c ls -la .' 
-			            }
-			        }
-				} catch (e) {
-				}		        
+						} catch (e) {
+						}		        
+		            }
+		        }
 	        }
 		}
-		stage('Second Parallel Stages') {
+		stage('parallel-stages-2') {
 			parallel {
 		        stage('CAB') { 
 		            steps {
