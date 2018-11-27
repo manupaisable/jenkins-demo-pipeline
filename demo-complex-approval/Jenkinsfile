@@ -13,18 +13,21 @@ pipeline {
 		                sh 'bash -c ls -la .' 
 		            }
 		        }
-		        stage('performance') { 
-		            steps {
-		                input message: "Run performance?"
-		                sh 'bash -c ls -la .' 
-		            }
-		        }
-		        stage('security') { 
-		            steps {
-		                input message: "Run security?"
-		                sh 'bash -c ls -la .' 
-		            }
-		        }
+		        try {
+			        stage('performance') { 
+			            steps {
+			                input message: "Run performance?"
+			                sh 'bash -c ls -la .' 
+			            }
+			        }
+			        stage('security') { 
+			            steps {
+			                input message: "Run security?"
+			                sh 'bash -c ls -la .' 
+			            }
+			        }
+				} catch (e) {
+				}		        
 	        }
 		}
 		stage('Second Parallel Stages') {
